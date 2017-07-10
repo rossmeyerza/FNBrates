@@ -21,16 +21,130 @@ function getRates(response, bank, denom) {
 			switch (denom.toLowerCase()) {
 			 	case 'zargbp':
 			 		row = 3;
+			 		table = 1;
 			 		break;
 			 	case 'zareur':
 			 		row = 2;
+			 		table = 1;
 			 		break;
 			 	case 'zarusd':
 			 		row = 4;
+			 		table = 1;
 			 		break;
 			 	case 'zaraed':
-			 		row = 9;
+			 		row = 2;
+			 		table = 2;
 			 		break;
+			 	case 'zaraud':
+			 		row = 3;
+			 		table = 2;
+			 		break;
+			 	case 'zarbwp':
+			 		row = 4;
+			 		table = 2;
+			 		break;
+			 	case 'zarcad':
+			 		row = 5;
+			 		table = 2;
+			 		break;
+			 	case 'zarchf':
+			 		row = 6;
+			 		table = 2;
+			 		break;
+			 	case 'zarcny':
+			 		row = 7;
+			 		table = 2;
+			 		break;
+			 	case 'zardkk':
+			 		row = 8;
+			 		table = 2;
+			 		break;
+			 	case 'zarghs':
+			 		row = 9;
+			 		table = 2;
+			 		break;
+			 	case 'zarhkd':
+			 		row = 10;
+			 		table = 2;
+			 		break;
+			 	case 'zarinr':
+			 		row = 11;
+			 		table = 2;
+			 		break;
+			 	case 'zarjpy':
+			 		row = 12;
+			 		table = 2;
+			 		break;
+			 	case 'zarkes':
+			 		row = 13;
+			 		table = 2;
+			 		break;
+			 	case 'zarlsl':
+			 		row = 14;
+			 		table = 2;
+			 		break;
+			 	case 'zarmur':
+			 		row = 15;
+			 		table = 2;
+			 		break;
+			 	case 'zarmwk':
+			 		row = 16;
+			 		table = 2;
+			 		break;
+			 	case 'zarmzn':
+			 		row = 17;
+			 		table = 2;
+			 		break;
+			 	case 'zarnad':
+			 		row = 18;
+			 		table = 2;
+			 		break;
+			 	case 'zarngn':
+			 		row = 19;
+			 		table = 2;
+			 		break;
+			 	case 'zarnok':
+			 		row = 20;
+			 		table = 2;
+			 		break;
+			 	case 'zarnzd':
+			 		row = 21;
+			 		table = 2;
+			 		break;
+			 	case 'zarpln':
+			 		row = 22;
+			 		table = 2;
+			 		break;
+			 	case 'zarsek':
+			 		row = 23;
+			 		table = 2;
+			 		break;
+			 	case 'zarsgd':
+			 		row = 24;
+			 		table = 2;
+			 		break;
+			 	case 'zarszl':
+			 		row = 25;
+			 		table = 2;
+			 		break;
+			 	case 'zarthb':
+			 		row = 26;
+			 		table = 2;
+			 		break;
+			 	case 'zartzs':
+			 		row = 27;
+			 		table = 2;
+			 		break;
+			 	case 'zarugx':
+			 		row = 28;
+			 		table = 2;
+			 		break;
+			 	case 'zarzmw':
+			 		row = 29;
+			 		table = 2;
+			 		break;
+			 	default:
+			 		row = 4;
 			 }
 			break;
 		default:
@@ -51,7 +165,7 @@ function getRates(response, bank, denom) {
 		res.on('end', ()=>{
 			const $ = cheerio.load(data);
 
-			$(`table:first-of-type > tr:nth-child(${row}) >td`)
+			$(`table:nth-of-type(${table}) > tr:nth-child(${row}) >td`)
 
 			.each(function(i,elem){
 				info[i] = $(this).text().trim().replace(/\r?\n|\r|\t+/g, "");
@@ -97,7 +211,7 @@ app.get('/mock/zargbp', (req, res) =>{
 });
 
 app.use(function(req,res){
-	res.send('Nothing here');
+	res.send('API docs coming. See <a href="https://github.com/rossmeyerza/FNBrates">https://github.com/rossmeyerza/FNBrates</a>');
 });
 
 app.listen(3030, ()=>{
